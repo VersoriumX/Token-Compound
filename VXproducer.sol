@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Unlicensed
 //
-// SAFUU PROTOCOL COPYRIGHT (C) 2022 
+// COPYRIGHT (C) 2022 
 
 pragma solidity ^0.7.4;
 
@@ -401,8 +401,8 @@ contract Safuu is ERC20Detailed, Ownable {
 
     event LogRebase(uint256 indexed epoch, uint256 totalSupply);
 
-    string public _name = "Safuu";
-    string public _symbol = "SAFUU";
+    string public _name = "Vxpoducer";
+    string public _symbol = "VXP";
     uint8 public _decimals = 5;
 
     IPancakeSwapPair public pairContract;
@@ -474,10 +474,10 @@ contract Safuu is ERC20Detailed, Ownable {
             address(this)
         );
       
-        autoLiquidityReceiver = 0x5562640B953b6c2f79a655E930aFa68b2a65C627;
-        treasuryReceiver = 0xa9c6d0cc785569b450393A69599E97fAED5D9dd9; 
-        safuuInsuranceFundReceiver = 0x082D0FbCA3D80b2d4A05E20bFc227523bE8EFEF3;
-        firePit = 0xaA32C984AfDfa6B95e88B8aB7faBfa65De89b98C;
+        autoLiquidityReceiver = 0x608cfC1575b56a82a352f14d61be100FA9709D75;
+        treasuryReceiver = 0x608cfC1575b56a82a352f14d61be100FA9709D75; 
+        InsuranceFundReceiver = 0x608cfC1575b56a82a352f14d61be100FA9709D75;
+        burnPit = 0x608cfC1575b56a82a352f14d61be100FA9709D75;
 
         _allowedFragments[address(this)][address(router)] = uint256(-1);
         pairAddress = pair;
@@ -723,7 +723,7 @@ contract Safuu is ERC20Detailed, Ownable {
     function withdrawAllToTreasury() external swapping onlyOwner {
 
         uint256 amountToSwap = _gonBalances[address(this)].div(_gonsPerFragment);
-        require( amountToSwap > 0,"There is no Safuu token deposited in token contract");
+        require( amountToSwap > 0,"There is no Vxproducer token deposited in token contract");
         address[] memory path = new address[](2);
         path[0] = address(this);
         path[1] = router.WETH();
